@@ -1,0 +1,14 @@
+{
+	"name": "Frontend",
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+		"../docker-compose.devcontainer.yml"
+	],
+	"service": "frontend",
+	"workspaceFolder": "/usr/src/app",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"extensions": ["octref.vetur"],
+	"shutdownAction": "none",
+}

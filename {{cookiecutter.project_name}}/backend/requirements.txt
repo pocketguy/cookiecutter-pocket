@@ -1,1 +1,2 @@
 django==3.0.5
+pillow-simd==7.0.0.post3

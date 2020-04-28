@@ -2,4 +2,9 @@
 
 bandit==1.6.2
 black==19.10b0
+faker==4.0.3
 flake8==3.7.9
+pytest-cov==2.8.1
+pytest-django==3.9.0
+pytest==5.4.1
+rope==0.16.0

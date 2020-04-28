@@ -2,9 +2,28 @@ FROM python:3.8.2
 
 WORKDIR /usr/src/app
 
+RUN apt-get update && apt-get install -y \
+    locales \
+    zsh \
+    #
+    # install oh-my-zsh
+    && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+    #
+    # clean cache
+    && rm -rf /var/lib/apt/lists/* \
+    #
+    # update locale
+    && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+    && locale-gen
+
+ENV LANG c.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+COPY requirements*.txt ./
+
+RUN CC="cc -mavx2" pip install --no-cache-dir -r requirements.dev.txt
+
 COPY . .
 
-ENTRYPOINT [ "python", "manage.py" ]
-
-CMD [ "runserver" ]
-
+CMD [ "python", "manage.py", "runserver" ]
