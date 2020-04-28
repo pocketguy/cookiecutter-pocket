@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:12.2
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile.dev
+    volumes: ./backend:/usr/src/app
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile.dev
+    volumes: ./frontend:/usr/src/app
